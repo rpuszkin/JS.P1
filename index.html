@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Projekt 1 JavaScript Future Collars (Robert Puszkin)</title>
+  </head>
+  <body>
+    <header>
+      <img src="media/logo.png" id="logo" alt="logo" />
+
+      <h1 id="moneyLeft">saldo budżetu rodziny</h1>
+    </header>
+    <main<div class="listsContainer">
+      <div id="expensesContainer">
+        <h2>WYDATKI</h2>
+        <input type="text" class="form-control" id="newExpenseName" placeholder="podaj nazwę nowego wydatku" />
+        <input type="number" class="form-control" placeholder="podaj kwotę nowego wydatku" id="newExpenseValue" placeholder="podaj kwotę nowego wydatku" />
+        <button type="button" id="addNewExpense" class="btn-success">dodaj</button>
+        <ul id="expensesList"></ul>
+        <h2 id="expensesListFooter">Podsumowanie listy wydatków</h2>
+      </div>
+      <div id="earningsContainer">   
+        <h2>ZAROBKI</h2>
+        <input type="text" class="form-control" id="newEarningName" placeholder="podaj nazwę nowego dochodu" />
+        <input type="number" class="form-control" placeholder="podaj kwotę nowego dochodu" id="newEarningValue" placeholder="podaj kwotę nowego dochodu" />
+        <button type="button" id="addNewEarning" class="btn-success">dodaj</button>
+        <ul id="earningsList"></ul>
+        <h2 id="earningsListFooter">Podsumowanie listy zarobków</h2>
+      </div>
+      </div></main>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
