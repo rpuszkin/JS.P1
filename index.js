@@ -23,7 +23,9 @@ function refreshView() {
     items.forEach((item, i) => {
       let listName = items === expenses ? "expenses" : "earnings";
 
-      createListContent += `<li>${i + 1}. ${item.name} - ${item.value}`;
+      createListContent += `<li id="li_${listName}_${i}">${i + 1}. ${
+        item.name
+      } - ${item.value}`;
       createListContent += `<div class="btns-container">
       <button class="btn-danger" id="delete_${listName}_${i}">Usuń</button>
       <button class="btn-primary" id="edit_${listName}_${i}">Edytuj</button>
@@ -33,6 +35,12 @@ function refreshView() {
         const deleteButton = document.getElementById(`delete_${listName}_${i}`);
         deleteButton.addEventListener("click", function () {
           deleteItem(items, i);
+        });
+      }, 0);
+      setTimeout(() => {
+        const editButton = document.getElementById(`edit_${listName}_${i}`);
+        editButton.addEventListener("click", function () {
+          edititem(items, i, listName);
         });
       }, 0);
     });
@@ -91,7 +99,11 @@ function deleteItem(type, index) {
   type.splice(index, 1);
   refreshView();
 }
-
+function edititem(type, index, listName) {
+  const li = document.getElementById(`li_${listName}_${index}`);
+  li.innerHTML = `<input type="text" value="${type[index].name}">
+<input type="text" value="${type[index].value}">`;
+}
 function addItem(type, name, value) {
   if (name.length < 3) {
     alert("nazwa jest zbyt krótka");
