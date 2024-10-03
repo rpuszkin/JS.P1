@@ -100,32 +100,61 @@ function deleteItem(type, index) {
   refreshView();
 }
 function edititem(type, index, listName) {
-  const li = document.getElementById(`li_${listName}_${index}`);
-  li.innerHTML = `<input type="text" value="${type[index].name}">
-<input type="text" value="${type[index].value}">`;
-}
-function addItem(type, name, value) {
-  if (name.length < 3) {
-    alert("nazwa jest zbyt krótka");
-    return;
-  } else if (value < 0.01) {
-    alert("kwota jest zbyt mała");
-    return;
+  function saveChanges(type, index, newEarningName, newValue) {
+    type[index].name = newEarningName;
+    type[index].value = newValue;
+    refreshView();
   }
-  type[type.length] = { name: name, value: value };
-  refreshView();
+  const li = document.getElementById(`li_${listName}_${index}`);
+  li.innerHTML = `<input type="text" id="edit-input_name_${listName}_${index}" value="${type[index].name}">
+<input type="text" id="edit-input_value_${listName}_${index}" value="${type[index].value}">
+<button class="btn-success" id="save_${listName}_${index}">Zapisz</button>`;
+  setTimeout(() => {
+    document
+      .getElementById("save_" + listName + "_" + index)
+      .addEventListener("click", function () {
+        let changedName = document.getElementById(
+          "edit-input_name_" + listName + "_" + index
+        ).value;
+        let changedValue = Number(
+          document.getElementById("edit-input_value_" + listName + "_" + index)
+            .value
+        );
+        saveChanges(type, index, changedName, changedValue);
+      });
+  }, 0);
+
+  function addItem(type, name, value) {
+    if (name.length < 3) {
+      alert("nazwa jest zbyt krótka");
+      return;
+    } else if (value < 0.01) {
+      alert("kwota jest zbyt mała");
+      return;
+    }
+    type[type.length] = { name: name, value: value };
+    refreshView();
+  }
+
+  // dodaj wydatek
+  document
+    .getElementById("addNewExpense")
+    .addEventListener("click", function () {
+      const expenseName = document.getElementById("newExpenseName").value;
+      const expenseValue = Number(
+        document.getElementById("newExpenseValue").value
+      );
+      addItem(expenses, expenseName, expenseValue);
+    });
+
+  // dodaj zarobek
+  document
+    .getElementById("addNewEarning")
+    .addEventListener("click", function () {
+      const earningName = document.getElementById("newEarningName").value;
+      const earningValue = Number(
+        document.getElementById("newEarningValue").value
+      );
+      addItem(earnings, earningName, earningValue);
+    });
 }
-
-// dodaj wydatek
-document.getElementById("addNewExpense").addEventListener("click", function () {
-  const expenseName = document.getElementById("newExpenseName").value;
-  const expenseValue = Number(document.getElementById("newExpenseValue").value);
-  addItem(expenses, expenseName, expenseValue);
-});
-
-// dodaj zarobek
-document.getElementById("addNewEarning").addEventListener("click", function () {
-  const earningName = document.getElementById("newEarningName").value;
-  const earningValue = Number(document.getElementById("newEarningValue").value);
-  addItem(earnings, earningName, earningValue);
-});
