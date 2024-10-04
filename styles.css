@@ -22,7 +22,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   border: 2px solid black;
-  width: 40%;
+  min-width: 40%;
   margin: 0 auto;
 }
 .listsContainer {
@@ -53,7 +53,8 @@ li:nth-last-of-type(odd) {
 }
 .btn-primary,
 .btn-danger,
-.btn-success {
+.btn-success,
+.btn-warning {
   width: 50px;
   height: 25px;
   font-size: 11px;

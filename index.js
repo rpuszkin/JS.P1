@@ -100,6 +100,7 @@ function deleteItem(type, index) {
   refreshView();
 }
 function edititem(type, index, listName) {
+  alert("Nowa nazwa będzie musiała mieć minimum 3 znaki, a kwota 1 grosz");
   function saveChanges(type, index, newEarningName, newValue) {
     type[index].name = newEarningName;
     type[index].value = newValue;
@@ -108,21 +109,21 @@ function edititem(type, index, listName) {
   const li = document.getElementById(`li_${listName}_${index}`);
   li.innerHTML = `<input type="text" id="edit-input_name_${listName}_${index}" value="${type[index].name}">
 <input type="text" id="edit-input_value_${listName}_${index}" value="${type[index].value}">
-<button class="btn-success" id="save_${listName}_${index}">Zapisz</button>`;
-  setTimeout(() => {
-    document
-      .getElementById("save_" + listName + "_" + index)
-      .addEventListener("click", function () {
-        let changedName = document.getElementById(
-          "edit-input_name_" + listName + "_" + index
-        ).value;
-        let changedValue = Number(
-          document.getElementById("edit-input_value_" + listName + "_" + index)
-            .value
-        );
-        saveChanges(type, index, changedName, changedValue);
-      });
-  }, 0);
+<button class="btn-success" id="save_${listName}_${index}">Zapisz</button>
+<button class="btn-warning" id="cancel_${listName}_${index}">Anuluj</button>`;
+
+  document
+    .getElementById("save_" + listName + "_" + index)
+    .addEventListener("click", function () {
+      let changedName = document.getElementById(
+        "edit-input_name_" + listName + "_" + index
+      ).value;
+      let changedValue = Number(
+        document.getElementById("edit-input_value_" + listName + "_" + index)
+          .value
+      );
+      saveChanges(type, index, changedName, changedValue);
+    });
 
   function addItem(type, name, value) {
     if (name.length < 3) {
