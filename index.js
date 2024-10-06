@@ -115,6 +115,13 @@ document.getElementById("addNewEarning").addEventListener("click", function () {
 function edititem(type, index, listName) {
   //alert("Nowa nazwa będzie musiała mieć minimum 3 znaki, a kwota 1 grosz");
   function saveChanges(type, index, newEarningName, newValue) {
+    if (newEarningName.length < 3) {
+      alert("nazwa jest zbyt krótka");
+      return;
+    } else if (newValue < 0.01) {
+      alert("kwota jest zbyt mała");
+      return;
+    }
     type[index].name = newEarningName;
     type[index].value = newValue;
     refreshView();
