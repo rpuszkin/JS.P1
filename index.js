@@ -57,11 +57,11 @@ function refreshView() {
     if (items === expenses) {
       document.getElementById(
         "expensesListFooter"
-      ).textContent = `Suma wydatków: ${expensesSummary} złotych`;
+      ).textContent = `Suma wydatków: ${expensesSummary.toFixed(2)} złotych`;
     } else {
       document.getElementById(
         "earningsListFooter"
-      ).textContent = `Suma przychodów: ${earningsSummary} złotych`;
+      ).textContent = `Suma przychodów: ${earningsSummary.toFixed(2)} złotych`;
     }
 
     return createListContent;
@@ -99,8 +99,21 @@ function deleteItem(type, index) {
   type.splice(index, 1);
   refreshView();
 }
+// dodaj wydatek
+document.getElementById("addNewExpense").addEventListener("click", function () {
+  const expenseName = document.getElementById("newExpenseName").value;
+  const expenseValue = Number(document.getElementById("newExpenseValue").value);
+  addItem(expenses, expenseName, expenseValue);
+});
+
+// dodaj zarobek
+document.getElementById("addNewEarning").addEventListener("click", function () {
+  const earningName = document.getElementById("newEarningName").value;
+  const earningValue = Number(document.getElementById("newEarningValue").value);
+  addItem(earnings, earningName, earningValue);
+});
 function edititem(type, index, listName) {
-  alert("Nowa nazwa będzie musiała mieć minimum 3 znaki, a kwota 1 grosz");
+  //alert("Nowa nazwa będzie musiała mieć minimum 3 znaki, a kwota 1 grosz");
   function saveChanges(type, index, newEarningName, newValue) {
     type[index].name = newEarningName;
     type[index].value = newValue;
@@ -124,38 +137,15 @@ function edititem(type, index, listName) {
       );
       saveChanges(type, index, changedName, changedValue);
     });
-
-  function addItem(type, name, value) {
-    if (name.length < 3) {
-      alert("nazwa jest zbyt krótka");
-      return;
-    } else if (value < 0.01) {
-      alert("kwota jest zbyt mała");
-      return;
-    }
-    type[type.length] = { name: name, value: value };
-    refreshView();
+}
+function addItem(type, name, value) {
+  if (name.length < 3) {
+    alert("nazwa jest zbyt krótka");
+    return;
+  } else if (value < 0.01) {
+    alert("kwota jest zbyt mała");
+    return;
   }
-
-  // dodaj wydatek
-  document
-    .getElementById("addNewExpense")
-    .addEventListener("click", function () {
-      const expenseName = document.getElementById("newExpenseName").value;
-      const expenseValue = Number(
-        document.getElementById("newExpenseValue").value
-      );
-      addItem(expenses, expenseName, expenseValue);
-    });
-
-  // dodaj zarobek
-  document
-    .getElementById("addNewEarning")
-    .addEventListener("click", function () {
-      const earningName = document.getElementById("newEarningName").value;
-      const earningValue = Number(
-        document.getElementById("newEarningValue").value
-      );
-      addItem(earnings, earningName, earningValue);
-    });
+  type[type.length] = { name: name, value: value };
+  refreshView();
 }
