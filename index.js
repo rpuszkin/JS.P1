@@ -138,11 +138,15 @@ function edititem(type, index, listName) {
       let changedName = document.getElementById(
         "edit-input_name_" + listName + "_" + index
       ).value;
-      let changedValue = Number(
-        document.getElementById("edit-input_value_" + listName + "_" + index)
-          .value
-      );
+      let changedValue = document.getElementById(
+        "edit-input_value_" + listName + "_" + index
+      ).value;
       saveChanges(type, index, changedName, changedValue);
+    });
+  document
+    .getElementById("cancel_" + listName + "_" + index)
+    .addEventListener("click", function () {
+      refreshView();
     });
 }
 function addItem(type, name, value) {
