@@ -105,7 +105,6 @@ document.getElementById("addNewExpense").addEventListener("click", function () {
   const expenseValue = Number(document.getElementById("newExpenseValue").value);
   addItem(expenses, expenseName, expenseValue);
 });
-
 // dodaj zarobek
 document.getElementById("addNewEarning").addEventListener("click", function () {
   const earningName = document.getElementById("newEarningName").value;
@@ -123,7 +122,7 @@ function edititem(type, index, listName) {
       return;
     }
     type[index].name = newEarningName;
-    type[index].value = parseFloat(newValue);
+    type[index].value = parseFloat(newValue.replace(",", "."));
     li.innerHTML = `${index + 1}. ${type[index].name} - ${type[index].value}`;
     refreshView();
   }
