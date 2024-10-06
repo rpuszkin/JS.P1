@@ -38,7 +38,7 @@ function refreshView() {
         });
       }, 0);
       setTimeout(() => {
-        const editButton = document.getElementById(`edit_${listName}_${i}`);
+        let editButton = document.getElementById(`edit_${listName}_${i}`);
         editButton.addEventListener("click", function () {
           edititem(items, i, listName);
         });
@@ -123,7 +123,8 @@ function edititem(type, index, listName) {
       return;
     }
     type[index].name = newEarningName;
-    type[index].value = newValue;
+    type[index].value = parseFloat(newValue);
+    li.innerHTML = `${index + 1}. ${type[index].name} - ${type[index].value}`;
     refreshView();
   }
   const li = document.getElementById(`li_${listName}_${index}`);
