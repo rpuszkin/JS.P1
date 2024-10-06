@@ -55,13 +55,25 @@ function refreshView() {
     );
 
     if (items === expenses) {
+      if (
+        (expensesSummary % 1 !== 0 && expensesSummary < 1) ||
+        1 > expensesSummary > 0
+      ) {
+        expensesSummary = parseFloat(expensesSummary.toFixed(2));
+      }
       document.getElementById(
         "expensesListFooter"
-      ).textContent = `Suma wydatków: ${expensesSummary.toFixed(2)} złotych`;
+      ).textContent = `Suma wydatków: ${expensesSummary} złotych`;
     } else {
+      if (
+        (earningsSummary % 1 !== 0 && earningsSummary > 1) ||
+        1 > earningsSummary > 0
+      ) {
+        expensesSummary = parseFloat(earningsSummary.toFixed);
+      }
       document.getElementById(
         "earningsListFooter"
-      ).textContent = `Suma przychodów: ${earningsSummary.toFixed(2)} złotych`;
+      ).textContent = `Suma przychodów: ${earningsSummary} złotych`;
     }
 
     return createListContent;
