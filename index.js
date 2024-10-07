@@ -56,7 +56,7 @@ function refreshView() {
 
     if (items === expenses) {
       if (
-        (expensesSummary % 1 !== 0 && expensesSummary < 1) ||
+        (expensesSummary % 1 !== 0 && expensesSummary > 1) ||
         1 > expensesSummary > 0
       ) {
         expensesSummary = parseFloat(expensesSummary.toFixed(2));
@@ -69,7 +69,7 @@ function refreshView() {
         (earningsSummary % 1 !== 0 && earningsSummary > 1) ||
         1 > earningsSummary > 0
       ) {
-        expensesSummary = parseFloat(earningsSummary.toFixed);
+        earningsSummary = parseFloat(earningsSummary.toFixed(2));
       }
       document.getElementById(
         "earningsListFooter"
@@ -115,6 +115,7 @@ function deleteItem(type, index) {
 document.getElementById("addNewExpense").addEventListener("click", function () {
   const expenseName = document.getElementById("newExpenseName").value;
   const expenseValue = Number(document.getElementById("newExpenseValue").value);
+  console.log(expenses);
   addItem(expenses, expenseName, expenseValue);
 });
 // dodaj zarobek
@@ -162,6 +163,7 @@ function edititem(type, index, listName) {
     });
 }
 function addItem(type, name, value) {
+  console.log({ type, name, value });
   if (name.length < 3) {
     alert("nazwa jest zbyt krótka");
     return;
