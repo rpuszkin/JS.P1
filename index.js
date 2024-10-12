@@ -1,9 +1,19 @@
-var expenses = "";
-var earnings = "";
-let expensesSummary;
-let earningsSummary;
+let expenses = [
+  {
+    value: 0,
+    name: "przykładowy wydatek",
+  },
+];
+let earnings = [
+  {
+    value: 0,
+    name: "przykładowy dochód",
+  },
+];
+let expensesSummary = "";
+let earningsSummary = "";
 
-function initialVarSet() {
+/*function initialVarSet() {
   expenses = [
     { value: 2000, name: "Rachunki" },
     { value: 2000, name: "Leasing" },
@@ -14,8 +24,8 @@ function initialVarSet() {
     { value: 500, name: "Sprzedaż na allegro" },
     { value: 2000, name: "Zlecenia" },
   ];
-}
-initialVarSet();
+}*/
+//initialVarSet();
 
 function refreshView() {
   function generateList(items) {
@@ -55,9 +65,10 @@ function refreshView() {
     );
 
     if (items === expenses) {
+      //zaokrąglam konwertując na numer tylko gdy podsumowanie ma jakieś grosze
       if (
         (expensesSummary % 1 !== 0 && expensesSummary > 1) ||
-        1 > expensesSummary > 0
+        expensesSummary < 1
       ) {
         expensesSummary = parseFloat(expensesSummary.toFixed(2));
       }
@@ -65,9 +76,10 @@ function refreshView() {
         "expensesListFooter"
       ).textContent = `Suma wydatków: ${expensesSummary} złotych`;
     } else {
+      //zaokrąglam konwertując na numer tylko gdy podsumowanie ma jakieś grosze
       if (
         (earningsSummary % 1 !== 0 && earningsSummary > 1) ||
-        1 > earningsSummary > 0
+        1 > earningsSummary < 1
       ) {
         earningsSummary = parseFloat(earningsSummary.toFixed(2));
       }
@@ -104,7 +116,7 @@ function refreshView() {
   moneyLeft.textContent = `Możesz jeszcze wydać ${toSpent} złotych`;
 }
 
-initialVarSet();
+//initialVarSet();
 refreshView();
 
 function deleteItem(type, index) {
