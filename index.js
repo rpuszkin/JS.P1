@@ -1,15 +1,5 @@
-let expenses = [
-  {
-    value: 0,
-    name: "przykładowy wydatek",
-  },
-];
-let earnings = [
-  {
-    value: 0,
-    name: "przykładowy dochód",
-  },
-];
+let expenses = [];
+let earnings = [];
 let expensesSummary = "";
 let earningsSummary = "";
 
@@ -98,7 +88,11 @@ function refreshView() {
 
   const moneyLeft = document.getElementById("moneyLeft");
   let toSpent = earningsSummary - expensesSummary;
-  if (toSpent < 0) {
+  if (earnings.length === 0 && expenses.length === 0) {
+    moneyLeft.textContent =
+      "Nie ma żadnych adnych przychodów, ani wydatków, ale możesz dodać!";
+    return;
+  } else if (toSpent < 0) {
     if (toSpent % 1 !== 0) {
       toSpent = toSpent.toFixed(2);
     }
@@ -110,6 +104,7 @@ function refreshView() {
       "Jesteś na 0, nie poszalejesz... Lepiej planuj finansów!";
     return;
   }
+
   if (toSpent % 1 !== 0) {
     toSpent = toSpent.toFixed(2);
   }
