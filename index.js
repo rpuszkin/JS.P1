@@ -90,7 +90,7 @@ function refreshView() {
   let toSpent = earningsSummary - expensesSummary;
   if (earnings.length === 0 && expenses.length === 0) {
     moneyLeft.textContent =
-      "Nie ma żadnych adnych przychodów, ani wydatków, ale możesz dodać!";
+      "Nie ma podano jeszcze żadnych przychodów, ani wydatków, ale możesz dodać i mieć finanse pod kontrolą!";
     return;
   } else if (toSpent < 0) {
     if (toSpent % 1 !== 0) {
