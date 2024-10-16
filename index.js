@@ -2,47 +2,30 @@ let expenses = [];
 let earnings = [];
 let expensesSummary = "";
 let earningsSummary = "";
-
-/*function initialVarSet() {
-  expenses = [
-    { value: 2000, name: "Rachunki" },
-    { value: 2000, name: "Leasing" },
-    { value: 513, name: "Inne" },
-  ];
-  earnings = [
-    { value: 3000, name: "Pensja" },
-    { value: 500, name: "Sprzedaż na allegro" },
-    { value: 2000, name: "Zlecenia" },
-  ];
-}*/
-//initialVarSet();
-
 function refreshView() {
   function generateList(items) {
-    let createListContent = "";
+    const itemType = items === expenses ? "expensesList" : "earningsList";
+    const list = document.getElementById(itemType);
+    list.innerHTML = "";
     items.forEach((item, i) => {
-      let listName = items === expenses ? "expenses" : "earnings";
+      const listName = items === expenses ? "expenses" : "earnings";
 
-      createListContent += `<li id="li_${listName}_${i}">${i + 1}. ${
-        item.name
-      } - ${item.value}`;
-      createListContent += `<div class="btns-container">
+      const listItem = `<li id="li_${listName}_${i}">${i + 1}. ${item.name} - ${
+        item.value
+      } <div class="btns-container">
       <button class="btn-danger" id="delete_${listName}_${i}">Usuń</button>
       <button class="btn-primary" id="edit_${listName}_${i}">Edytuj</button>
       </div></li>`;
+      list.insertAdjacentHTML("beforeend", listItem);
+      const deleteButton = document.getElementById(`delete_${listName}_${i}`);
+      deleteButton.addEventListener("click", function () {
+        deleteItem(items, i);
+      });
 
-      setTimeout(() => {
-        const deleteButton = document.getElementById(`delete_${listName}_${i}`);
-        deleteButton.addEventListener("click", function () {
-          deleteItem(items, i);
-        });
-      }, 0);
-      setTimeout(() => {
-        let editButton = document.getElementById(`edit_${listName}_${i}`);
-        editButton.addEventListener("click", function () {
-          edititem(items, i, listName);
-        });
-      }, 0);
+      const editButton = document.getElementById(`edit_${listName}_${i}`);
+      editButton.addEventListener("click", function () {
+        edititem(items, i, listName);
+      });
     });
 
     expensesSummary = expenses.reduce(
@@ -77,26 +60,20 @@ function refreshView() {
         "earningsListFooter"
       ).textContent = `Suma przychodów: ${earningsSummary} złotych`;
     }
-
-    return createListContent;
   }
-
-  document.getElementById("expensesList").innerHTML = "";
-  document.getElementById("earningsList").innerHTML = "";
-  document.getElementById("expensesList").innerHTML += generateList(expenses);
-  document.getElementById("earningsList").innerHTML += generateList(earnings);
-
+  generateList(expenses);
+  generateList(earnings);
   const moneyLeft = document.getElementById("moneyLeft");
   let toSpent = earningsSummary - expensesSummary;
   if (earnings.length === 0 && expenses.length === 0) {
     moneyLeft.textContent =
-      "Nie podano jeszcze żadnych przychodów, ani wydatków, ale możesz dodać i miej finanse pod kontrolą!";
+      "Nie dodano jeszcze żadnych przychodów, ani wydatków, ale możesz dodawać i mieć finanse pod kontrolą!";
     return;
   } else if (toSpent < 0) {
     if (toSpent % 1 !== 0) {
       toSpent = toSpent.toFixed(2);
     }
-    let debet = -toSpent;
+    const debet = -toSpent;
     moneyLeft.textContent = `Hamuj z wydatkami! Jesteś pod kreską... aż ${debet} złotych`;
     return;
   } else if (toSpent === 0) {
@@ -122,7 +99,6 @@ function deleteItem(type, index) {
 document.getElementById("addNewExpense").addEventListener("click", function () {
   const expenseName = document.getElementById("newExpenseName").value;
   const expenseValue = Number(document.getElementById("newExpenseValue").value);
-  console.log(expenses);
   addItem(expenses, expenseName, expenseValue);
 });
 // dodaj zarobek
@@ -132,7 +108,6 @@ document.getElementById("addNewEarning").addEventListener("click", function () {
   addItem(earnings, earningName, earningValue);
 });
 function edititem(type, index, listName) {
-  //alert("Nowa nazwa będzie musiała mieć minimum 3 znaki, a kwota 1 grosz");
   function saveChanges(type, index, newEarningName, newValue) {
     if (newEarningName.length < 3) {
       alert("nazwa jest zbyt krótka");
@@ -155,10 +130,10 @@ function edititem(type, index, listName) {
   document
     .getElementById("save_" + listName + "_" + index)
     .addEventListener("click", function () {
-      let changedName = document.getElementById(
+      const changedName = document.getElementById(
         "edit-input_name_" + listName + "_" + index
       ).value;
-      let changedValue = document.getElementById(
+      const changedValue = document.getElementById(
         "edit-input_value_" + listName + "_" + index
       ).value;
       saveChanges(type, index, changedName, changedValue);
@@ -170,7 +145,6 @@ function edititem(type, index, listName) {
     });
 }
 function addItem(type, name, value) {
-  console.log({ type, name, value });
   if (name.length < 3) {
     alert("nazwa jest zbyt krótka");
     return;
