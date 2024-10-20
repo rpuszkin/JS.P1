@@ -75,7 +75,3 @@ li {
   flex-direction: column;
   margin-top: auto;
 }
-#expensesListFooter,
-#earningsListFooter {
-  margin-top: auto;
-}
