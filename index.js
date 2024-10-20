@@ -108,11 +108,6 @@ document.getElementById("addNewEarning").addEventListener("click", function () {
   addItem(earnings, earningName, earningValue);
 });
 function edititem(type, index, listName) {
-  const edit_reqid = "edit_" + listName + "_requirements";
-  document.getElementById(edit_reqid).style.visibility = "visible";
-  setTimeout(function () {
-    document.getElementById(edit_reqid).style.visibility = "hidden";
-  }, 15000);
   function saveChanges(type, index, newEarningName, newValue) {
     if (newEarningName.length < 3) {
       alert("nazwa jest zbyt krótka");
