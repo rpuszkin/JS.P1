@@ -34,8 +34,11 @@ body {
   margin-bottom: 14px;
 }
 .requirements {
-  width: 100%;
   background-color: lightyellow;
+  width: 100%;
+}
+.requirementsList {
+  list-style-type: none;
 }
 .moneyItem {
   height: 26.5px;
