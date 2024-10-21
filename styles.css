@@ -66,11 +66,11 @@ li {
   font-size: 11px;
   border-radius: 3px;
 }
-.btn-success {
-  border-radius: 3px;
-}
 .listFooter {
   display: flex;
   flex-direction: column;
   margin-top: auto;
+  font-style: arial black;
+  font-weight: 700;
+  font-size: 16px;
 }
