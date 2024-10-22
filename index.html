@@ -14,80 +14,78 @@
   </head>
   <body>
     <header>
-      <img src="media/logo.png" id="logo" alt="logo" class="logo" />
+      <img src="media/logo.png" alt="logo" class="logo" />
 
-      <h1 id="moneyLeft" class="moneyLeft">saldo budżetu rodziny</h1>
+      <h1 id="moneyLeft" class="moneyLeft"></h1>
     </header>
-    <main>
-      <div class="listsContainer">
-        <div id="expensesContainer" class="listContainer">
-          <h2 class="listTitle">WYDATKI</h2>
-          <div class="requirements">
-            Wydatek musi posiadać:
-            <ul class="requirementsList">
-              <li>
-                nazwę - zawierającą jakieś litery lub cyfry lub znaki specjalne,
-              </li>
-              <li>kwotę - minimum grosz.</li>
-            </ul>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            id="newExpenseName"
-            placeholder="podaj nazwę nowego wydatku"
-          />
-
-          <input
-            type="number"
-            class="form-control"
-            placeholder="podaj kwotę nowego wydatku"
-            id="newExpenseValue"
-            placeholder="podaj kwotę nowego wydatku"
-          />
-          <button type="button" id="addNewExpense" class="btn-success">
-            dodaj
-          </button>
-
-          <ul id="expensesList" class="list"></ul>
-          <h2 id="expensesListFooter" class="listFooter">
-            Podsumowanie listy wydatków
-          </h2>
+    <main class="listsContainer">
+      <section id="expensesContainer" class="listContainer">
+        <h2 class="listTitle">WYDATKI</h2>
+        <div class="requirements">
+          Wydatek musi posiadać:
+          <ul class="requirementsList">
+            <li>
+              nazwę - zawierającą jakieś litery lub cyfry lub znaki specjalne,
+            </li>
+            <li>kwotę - minimum grosz.</li>
+          </ul>
         </div>
-        <div id="earningsContainer" class="listContainer">
-          <h2 class="listTitle">ZAROBKI</h2>
-          <div class="requirements">
-            Zarobek musi posiadać:
-            <ul class="requirementsList">
-              <li>
-                nazwę - zawierającą jakieś litery lub cyfry lub znaki specjalne,
-              </li>
-              <li>kwotę - minimum grosz.</li>
-            </ul>
-          </div>
-          <input
-            type="text"
-            class="form-control"
-            id="newEarningName"
-            placeholder="podaj nazwę nowego dochodu"
-          />
-          <input
-            type="number"
-            step="0.01"
-            class="form-control"
-            placeholder="podaj kwotę nowego dochodu"
-            id="newEarningValue"
-            placeholder="podaj kwotę nowego dochodu"
-          />
-          <button type="button" id="addNewEarning" class="btn-success">
-            dodaj
-          </button>
-          <ul id="earningsList" class="list"></ul>
-          <h2 id="earningsListFooter" class="listFooter">
-            Podsumowanie listy zarobków
-          </h2>
+        <input
+          type="text"
+          class="form-control"
+          id="newExpenseName"
+          placeholder="podaj nazwę nowego wydatku"
+        />
+
+        <input
+          type="number"
+          class="form-control"
+          placeholder="podaj kwotę nowego wydatku"
+          id="newExpenseValue"
+          placeholder="podaj kwotę nowego wydatku"
+        />
+        <button type="button" id="addNewExpense" class="btn-success">
+          dodaj
+        </button>
+
+        <ul id="expensesList" class="list"></ul>
+        <h2 id="expensesListFooter" class="listFooter">
+          Podsumowanie listy wydatków
+        </h2>
+      </section>
+      <section id="earningsContainer" class="listContainer">
+        <h2 class="listTitle">ZAROBKI</h2>
+        <div class="requirements">
+          Zarobek musi posiadać:
+          <ul class="requirementsList">
+            <li>
+              nazwę - zawierającą jakieś litery lub cyfry lub znaki specjalne,
+            </li>
+            <li>kwotę - minimum grosz.</li>
+          </ul>
         </div>
-      </div>
+        <input
+          type="text"
+          class="form-control"
+          id="newEarningName"
+          placeholder="podaj nazwę nowego dochodu"
+        />
+        <input
+          type="number"
+          step="0.01"
+          class="form-control"
+          placeholder="podaj kwotę nowego dochodu"
+          id="newEarningValue"
+          placeholder="podaj kwotę nowego dochodu"
+        />
+        <button type="button" id="addNewEarning" class="btn-success">
+          dodaj
+        </button>
+        <ul id="earningsList" class="list"></ul>
+        <h2 id="earningsListFooter" class="listFooter">
+          Podsumowanie listy zarobków
+        </h2>
+      </section>
     </main>
     <script src="index.js"></script>
   </body>

@@ -38,7 +38,6 @@ function refreshView() {
     );
 
     if (items === expenses) {
-      //zaokrąglam konwertując na numer tylko gdy podsumowanie ma jakieś grosze
       if (
         (expensesSummary % 1 !== 0 && expensesSummary > 1) ||
         expensesSummary < 1
@@ -49,7 +48,6 @@ function refreshView() {
         "expensesListFooter"
       ).textContent = `Suma wydatków: ${expensesSummary} złotych`;
     } else {
-      //zaokrąglam konwertując na numer tylko gdy podsumowanie ma jakieś grosze
       if (
         (earningsSummary % 1 !== 0 && earningsSummary > 1) ||
         1 > earningsSummary < 1
@@ -94,7 +92,6 @@ function deleteItem(type, index) {
   type.splice(index, 1);
   refreshView();
 }
-// dodaj wydatek
 document.getElementById("addNewExpense").addEventListener("click", function () {
   const expenseName = document.getElementById("newExpenseName").value;
   const expenseValue = Number(document.getElementById("newExpenseValue").value);
@@ -103,7 +100,6 @@ document.getElementById("addNewExpense").addEventListener("click", function () {
   document.getElementById("newExpenseValue").value = "";
 });
 
-// dodaj zarobek
 document.getElementById("addNewEarning").addEventListener("click", function () {
   const earningName = document.getElementById("newEarningName").value;
   const earningValue = Number(document.getElementById("newEarningValue").value);
