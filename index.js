@@ -113,7 +113,7 @@ document.getElementById("addNewEarning").addEventListener("click", function () {
 });
 function edititem(type, index, listName) {
   function saveChanges(type, index, newEarningName, newValue) {
-    if (newEarningName.trim()) {
+    if ((newEarningName.trim().length = 0)) {
       alert("nazwa jest  niepoprawna");
       return;
     } else if (newValue < 0.01) {
@@ -149,7 +149,7 @@ function edititem(type, index, listName) {
     });
 }
 function addItem(type, name, value) {
-  if (name.trim) {
+  if ((name.trim().length = 0)) {
     alert("nazwa jest niepoprawna");
     return;
   } else if (value < 0.01) {
