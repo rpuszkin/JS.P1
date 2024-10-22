@@ -113,14 +113,14 @@ document.getElementById("addNewEarning").addEventListener("click", function () {
 });
 function edititem(type, index, listName) {
   function saveChanges(type, index, newEarningName, newValue) {
-    if (newEarningName.length < 3) {
-      alert("nazwa jest zbyt krótka");
+    if (!newEarningName.trim()) {
+      alert("nazwa jest  niepoprawna");
       return;
     } else if (newValue < 0.01) {
       alert("kwota jest zbyt mała");
       return;
     }
-    type[index].name = newEarningName;
+    type[index].name = newEarningName.trim();
     type[index].value = parseFloat(newValue.replace(",", "."));
     li.innerHTML = `${index + 1}. ${type[index].name} - ${type[index].value}`;
     refreshView();
@@ -149,13 +149,13 @@ function edititem(type, index, listName) {
     });
 }
 function addItem(type, name, value) {
-  if (name.length < 3) {
-    alert("nazwa jest zbyt krótka");
+  if (!name.trim) {
+    alert("nazwa jest niepoprawna");
     return;
   } else if (value < 0.01) {
     alert("kwota jest zbyt mała");
     return;
   }
-  type[type.length] = { name: name, value: value };
+  type[type.length] = { name: name.trim(), value: value };
   refreshView();
 }
