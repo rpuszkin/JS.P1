@@ -88,7 +88,6 @@ function refreshView() {
   moneyLeft.textContent = `Możesz jeszcze wydać ${toSpent} złotych`;
 }
 
-//initialVarSet();
 refreshView();
 
 function deleteItem(type, index) {
@@ -100,12 +99,17 @@ document.getElementById("addNewExpense").addEventListener("click", function () {
   const expenseName = document.getElementById("newExpenseName").value;
   const expenseValue = Number(document.getElementById("newExpenseValue").value);
   addItem(expenses, expenseName, expenseValue);
+  document.getElementById("newExpenseName").value = "";
+  document.getElementById("newExpenseValue").value = "";
 });
+
 // dodaj zarobek
 document.getElementById("addNewEarning").addEventListener("click", function () {
   const earningName = document.getElementById("newEarningName").value;
   const earningValue = Number(document.getElementById("newEarningValue").value);
   addItem(earnings, earningName, earningValue);
+  document.getElementById("newEarningValue").value = "";
+  document.getElementById("newEarningName").value = "";
 });
 function edititem(type, index, listName) {
   function saveChanges(type, index, newEarningName, newValue) {
